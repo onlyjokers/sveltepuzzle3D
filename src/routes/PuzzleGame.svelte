@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { shuffleArray } from '../utils';
-	import PageWithNav from '../PageWithNav.svelte';
-	import SuccessConfetti from '../SuccessConfetti.svelte';
 	import { browser } from '$app/environment';
-	import { height } from '../height.store';
-	import { extractIdentifier, extractTouch, TouchMode, type TouchData } from '../touch';
-	import { gameFinished } from '../finished.store';
-	import { loadSounds, Sound, playSound } from '../sound';
+	
+	import PageWithNav from './PageWithNav.svelte';
+	
+	import { height } from './height.store';
+	// import { gameFinished } from './finished.store';
 
+	import { extractIdentifier, extractTouch, TouchMode, type TouchData } from './touch';
+	// import { loadSounds, Sound, playSound } from './sound';
+	import { shuffleArray } from './utils';
+	
+	
 	interface Tile {
 		id: number; // in ascending order, so if ids in tiles is sorted, then the puzzle is solved.
 		imageRow: number;
@@ -31,7 +34,7 @@
 	let tiles: Tile[] = [];
 
 	onMount(() => {
-		loadSounds([Sound.BLOP, Sound.SWOOSH]);
+		// loadSounds([Sound.BLOP, Sound.SWOOSH]);
 		let counter = 0;
 		for (let i = 0; i < numRows; i++) {
 			for (let j = 0; j < numCols; j++) {
@@ -124,7 +127,7 @@
 				topElement.dispatchEvent(customEvent);
 			} else {
 				// going back to origin
-				playSound(Sound.SWOOSH);
+				// playSound(Sound.SWOOSH);
 			}
 			// cleaning up the data, otherwise we get a memory leak
 			touchDataMap.delete(identifier);
@@ -145,7 +148,7 @@
 		const droppedOnSelf = draggedItem.id === dropTarget.id;
 
 		if (!droppedOnSelf) {
-			playSound(Sound.BLOP);
+			// playSound(Sound.BLOP);
 			const indexOfDragged = tiles.indexOf(draggedItem);
 			const indexOfDropTarget = tiles.indexOf(dropTarget);
 			[tiles[indexOfDragged], tiles[indexOfDropTarget]] = [
@@ -155,9 +158,9 @@
 			tiles = [...tiles];
 
 			isFinished = isSortedAscending(tiles.map((tile) => tile.id));
-			gameFinished.set(isFinished);
+			// gameFinished.set(isFinished);
 		} else {
-			playSound(Sound.SWOOSH);
+			// playSound(Sound.SWOOSH);
 			// nothing to do
 		}
 	};
@@ -174,9 +177,9 @@
 </script>
 
 <PageWithNav parent="/puzzle" overflowHidden={true}>
-	<div class="confetti">
+	<!-- <div class="confetti">
 		<SuccessConfetti show={isFinished} />
-	</div>
+	</div> -->
 	<div class="board-wrapper" style="height: {$height}px" on:mousemove={onTouchmove}>
 		<div
 			id="puzzle"

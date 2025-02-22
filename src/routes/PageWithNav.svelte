@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { height } from './height.store';
-	import HeightUpdater from './HeightUpdater.svelte';
-	import { TouchMode } from './touch';
-	import { customTouchEnd, customTouchMove, customTouchStart } from './touch';
-	import ScrollUpdater from './ScrollUpdater.svelte';
 	import { onMount } from 'svelte';
-	import { gameFinished } from './finished.store';
+
+	import HeightUpdater from './HeightUpdater.svelte';
+	import ScrollUpdater from './ScrollUpdater.svelte';
+
+	import { TouchMode, customTouchEnd, customTouchMove, customTouchStart } from './touch';
+	
+	
+	import { height } from './height.store';
 
 	export let parent: string | null = null;
 	export let overflowHidden: boolean = false; // true for pages with svelte-confetti
@@ -13,7 +15,6 @@
 	export let touchMode: TouchMode = TouchMode.CLICK_ONLY;
 
 	onMount(() => {
-		gameFinished.set(false);
 	});
 </script>
 
