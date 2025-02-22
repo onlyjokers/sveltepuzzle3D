@@ -1,20 +1,10 @@
 <script lang="ts">
-	import Categories from '../Categories.svelte';
-	import { difficulty } from '../difficulty.store';
-	import { Category, type CategoryItem, hueByCategoryLight, Difficulty } from '../models';
-	import { filterByDifficulty } from '../utils';
-	import { PUZZLE_PAGES } from './puzzle-pages';
+	// THIS FILE IS GENERATED
+	import PuzzleGame from './PuzzleGame.svelte';
 
-	const color = hueByCategoryLight(Category.PUZZLE);
-
-	const games: CategoryItem[] = filterByDifficulty(
-		PUZZLE_PAGES.sort((a, b) => (a.link > b.link ? 1 : -1)).map((item, idx) => ({
-			...item,
-			color,
-			difficulty: idx >= 24 ? Difficulty.PRESCHOOLER : Difficulty.TODDLER
-		})),
-		$difficulty
-	);
+	const imageSrcRoot = '/assets/puzzle/01-orangutan';
+	const numCols = 2;
+	const numRows = 2;
 </script>
 
-<Categories parent="/" items={games} />
+<PuzzleGame {imageSrcRoot} {numRows} {numCols} />

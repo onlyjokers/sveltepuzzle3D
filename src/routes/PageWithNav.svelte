@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Nav from './Nav.svelte';
 	import { height } from './height.store';
 	import HeightUpdater from './HeightUpdater.svelte';
 	import { TouchMode } from './touch';
@@ -7,7 +6,6 @@
 	import ScrollUpdater from './ScrollUpdater.svelte';
 	import { onMount } from 'svelte';
 	import { gameFinished } from './finished.store';
-	import Debugger from './Debugger.svelte';
 
 	export let parent: string | null = null;
 	export let overflowHidden: boolean = false; // true for pages with svelte-confetti
@@ -29,14 +27,6 @@
 	on:touchend={customTouchEnd}
 	on:touchmove={customTouchMove}
 >
-	{#if !hideNav}
-		<div class="page-nav">
-			<Nav {parent} />
-		</div>
-	{/if}
-	<!-- Useful for mobile debugging,
-		if you want to write debug results directly into the DOM instead of accessing the console -->
-	<!-- <Debugger /> -->
 	<div
 		id="scrollable"
 		class="page-content"
