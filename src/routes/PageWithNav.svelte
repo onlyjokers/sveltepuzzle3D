@@ -39,7 +39,7 @@
 
 <style lang="scss">
 	.page-wrapper {
-		background-image: url('/img/background-pattern.svg?v=2');
+		// background-image: url('/img/background-pattern.svg?v=2');
 		background-size: 300px;
 		background-repeat: repeat;
 
